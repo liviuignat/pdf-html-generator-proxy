@@ -5,6 +5,8 @@
     "mocha": true
   },
   "rules": {
+    "object-curly-spacing": 0,
+    "import/prefer-default-export": 0,
     "import/no-extraneous-dependencies": 0,
     "quotes": [2, "single", {"avoidEscape": true, "allowTemplateLiterals": true}],
     "prefer-template": 2,
@@ -34,6 +36,7 @@
     }
   },
   "globals": {
-    "__DEVELOPMENT__": true
+    "__DEVELOPMENT__": true,
+    "Promise": true
   }
 }
