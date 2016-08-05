@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
   res.send('hello world');
 });
 
-app.get('/html', (req, res) => {
+app.get('/alex/html', (req, res) => {
   co(function* () {
     try {
       const html = mockHtml;
@@ -34,7 +34,7 @@ app.get('/html', (req, res) => {
   });
 });
 
-app.get('/pdf', (req, res) => {
+app.get('/alex/pdf', (req, res) => {
   co(function* () {
     try {
       const html = mockHtml;
