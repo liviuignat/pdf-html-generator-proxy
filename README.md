@@ -1,7 +1,10 @@
-### Starter Express app with Express, ES6, babel and piping already included
+### PDF generation proxy service
+
+- It will fetch all html links and inline them
+- It will cache all CSS content
 
 ```
-npm install
-npm run start
-npm run dev
+npm install    // install dependencies
+npm run start  // run in production
+npm run dev    // run in dev with hot reloading for NodeJS modules and ESLint validation
 ```
