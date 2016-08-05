@@ -5,6 +5,7 @@
     "mocha": true
   },
   "rules": {
+    "max-len": ["error", 150],
     "object-curly-spacing": 0,
     "import/prefer-default-export": 0,
     "import/no-extraneous-dependencies": 0,

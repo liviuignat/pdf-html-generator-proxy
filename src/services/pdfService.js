@@ -1,16 +1,16 @@
-import superagent from 'superagent';
+import request from 'request';
 
-export function getPdfFromHtml(html = '') {
-  return new Promise((resolve, reject) => {
-    superagent
-      .post('https://dock-server.duckdns.org/fs-pdf')
-      .set('content-type', 'text/html')
-      .send(html)
-      .end((err, res) => {
-        if (err) {
-          return reject(err);
-        }
-        return resolve(res.text);
-      });
+export function getPdfFromHtmlStream({html = '', urlPart = 'pdf', method = 'POST'} = {}) {
+  return new Promise((resolve) => {
+    const req = request({
+      url: `https://dock-server.duckdns.org/${urlPart}`,
+      method,
+      headers: {
+        'content-type': 'text/html'
+      },
+      body: html
+    });
+
+    return resolve(req);
   });
 }

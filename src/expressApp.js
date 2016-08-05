@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import co from 'co';
 
 import {inlineHtmlCss} from 'services/htmlService';
-import {getPdfFromHtml} from 'services/pdfService';
+import {getPdfFromHtmlStream} from 'services/pdfService';
 import {mockHtml} from 'mocks/pdf';
 
 const app = new Express();
@@ -40,10 +40,47 @@ app.get('/alex/pdf', (req, res) => {
       const html = mockHtml;
 
       const inlinedCssHtml = yield inlineHtmlCss(html);
-      const pdf = yield getPdfFromHtml(inlinedCssHtml);
+      const pdfStream = yield getPdfFromHtmlStream({html: inlinedCssHtml});
 
       res.set('content-type', 'application/pdf');
-      yield res.send(pdf);
+
+      pdfStream.pipe(res);
+    } catch (err) {
+      res.status(500);
+      res.send(`Error: ${err}. Stack: ${err.stack}`);
+    }
+  });
+});
+
+app.get('/alex/fs-pdf', (req, res) => {
+  co(function* () {
+    try {
+      const html = mockHtml;
+
+      const inlinedCssHtml = yield inlineHtmlCss(html);
+      const pdfStream = yield getPdfFromHtmlStream({html: inlinedCssHtml, urlPart: 'fs-pdf'});
+
+      res.set('content-type', 'application/pdf');
+
+      pdfStream.pipe(res);
+    } catch (err) {
+      res.status(500);
+      res.send(`Error: ${err}. Stack: ${err.stack}`);
+    }
+  });
+});
+
+app.get('/alex/local-pdf', (req, res) => {
+  co(function* () {
+    try {
+      const html = mockHtml;
+
+      const inlinedCssHtml = yield inlineHtmlCss(html);
+      const pdfStream = yield getPdfFromHtmlStream({html: inlinedCssHtml, urlPart: 'local-pdf', method: 'GET'});
+
+      res.set('content-type', 'application/pdf');
+
+      pdfStream.pipe(res);
     } catch (err) {
       res.status(500);
       res.send(`Error: ${err}. Stack: ${err.stack}`);
