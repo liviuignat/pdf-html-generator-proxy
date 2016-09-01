@@ -1,9 +1,12 @@
 import request from 'request';
+import {config} from 'config';
+
+const {baseApiUrl} = config;
 
 export function getPdfFromHtmlService1Stream({html = '', urlPart = 'pdf', method = 'POST'} = {}) {
   return new Promise((resolve) => {
     const req = request({
-      url: `https://dock-server.duckdns.org/pdf-generator/${urlPart}`,
+      url: `${baseApiUrl}/pdf-generator/${urlPart}`,
       method,
       headers: {
         'content-type': 'text/html'
@@ -23,7 +26,7 @@ export function getPdfFromHtmlService2Stream({html = ''} = {}) {
     };
 
     const req = request({
-      url: `https://dock-server.duckdns.org/pdf-service/pdf?download=false`,
+      url: `${baseApiUrl}/pdf-service/pdf?download=false`,
       method: 'POST',
       headers: {
         'content-type': 'application/json',

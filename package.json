@@ -16,8 +16,7 @@
     "start": {
       "command": "node ./index.js",
       "env": {
-        "NODE_PATH": "./src",
-        "NODE_ENV": "production"
+        "NODE_PATH": "./src"
       }
     },
     "start-dev": {
@@ -56,6 +55,7 @@
     "cheerio": "^0.20.0",
     "co": "^4.6.0",
     "compression": "^1.6.2",
+    "config": "^1.21.0",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "md5": "^2.1.0",
