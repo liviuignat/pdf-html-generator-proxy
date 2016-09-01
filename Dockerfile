@@ -1,9 +1,10 @@
-FROM nodesource/node:5.10.0
+FROM docker.appdirectondemand.com/appdirect/node:latest
 
-ADD package.json package.json
-ADD . .
-RUN npm install --production
+COPY . /src/pdf-html
+WORKDIR /src/pdf-html
+
 RUN SERVICE_NAME=pdf-html
+RUN npm install --production
 
 # Node environment
 ENV NODE_ENV=production
